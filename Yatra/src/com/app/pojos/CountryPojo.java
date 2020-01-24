@@ -63,7 +63,7 @@ public class CountryPojo {
 	}
 
 	//country(one) to pkg(many) relation with cascade on ALL and fk in pkg(many side)
-	@OneToMany(mappedBy="country",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="country",cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
 	public List<PackagePojo> getPkg() {
 		return pkg;
 	}
@@ -72,6 +72,16 @@ public class CountryPojo {
 		this.pkg = pkg;
 	}
 	
+	public void addPackage(PackagePojo pkgs) {
+		pkg.add(pkgs);
+		//System.out.println(pkgs.getpAmt());
+		pkgs.setCountry(this);
+		//System.out.println(pkg.contains(pkgs));
+		
+	}
 	
+	public void removePakage(PackagePojo pkgs) {
+		pkg.remove(pkgs);
+	}
 	
 }

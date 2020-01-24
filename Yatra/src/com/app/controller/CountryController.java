@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.dao.ICountryDao;
 import com.app.dao.IPackageDao;
-import com.app.pojos.CountryPojo;
 
 @Controller
 @RequestMapping("/country")
@@ -34,10 +33,10 @@ public class CountryController {
 	@PostMapping("/list")
 	public String getPackages(@RequestParam int cId,HttpSession hs) {
 		try {
-			//int cId=Integer.parseInt(c);
-			System.out.println(cId);
-			hs.setAttribute("Package_list",pdao.getPackages(cId));
-			return "/country/package";
+			//int cid=Integer.parseInt(cId);
+			//System.out.println(cId);
+			hs.setAttribute("cId", cId);		
+			return "redirect:/package/selected";
 		}
 		catch(RuntimeException e)
 		{
@@ -45,4 +44,17 @@ public class CountryController {
 			return "/country/list";
 		}
 	}
+	
+	@GetMapping("/countries")
+	public String getCountries(HttpSession hs) {
+		hs.setAttribute("countries",cdao.getCountries());
+		return "/country/countries";
+	}
+	
+	@PostMapping("/countries")
+	public String addPackage(@RequestParam int cId, HttpSession hs) {
+		hs.setAttribute("cId1",cId );
+		return "/package/list";
+	}
+	
 }

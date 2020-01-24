@@ -6,9 +6,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,7 +28,8 @@ public class PackagePojo {
 	String pDesc;
 	CountryPojo country;
 	List<HotelPojo> hotel=new ArrayList<>();
-	
+	List<CartPojo> cart=new ArrayList<>();
+	//CartPojo cart;
 	//default constructor
 	public PackagePojo() {
 		super();
@@ -33,7 +38,7 @@ public class PackagePojo {
 
 	//parameterised constructor w/o pId
 	public PackagePojo(Integer pId, double pAmt, String pName, String pType, String pDesc, CountryPojo country,
-			List<HotelPojo> hotel) {
+			List<HotelPojo> hotel,List<CartPojo> cart) {
 		super();
 		this.pId = pId;
 		this.pAmt = pAmt;
@@ -42,6 +47,7 @@ public class PackagePojo {
 		this.pDesc = pDesc;
 		this.country = country;
 		this.hotel = hotel;
+		this.cart=cart;
 	}
 
 	//auto-generation of pId
@@ -105,7 +111,7 @@ public class PackagePojo {
 	  
 	//pkg to hotel relation (one(pkg) has many(hotels))
 
-	  @OneToMany(mappedBy="pkg",cascade=CascadeType.ALL)
+	  @OneToMany(mappedBy="pkg")
 	  public List<HotelPojo> getHotel() {
 		return hotel;
 	}
@@ -113,8 +119,14 @@ public class PackagePojo {
 	public void setHotel(List<HotelPojo> hotel) {
 		this.hotel = hotel;
 	}
-	 
 
+	@ManyToMany(mappedBy="pkg",fetch=FetchType.EAGER)
+	public List<CartPojo> getCart() {
+		return cart;
+	}
 
+	public void setCart(List<CartPojo> cart) {
+		this.cart = cart;
+	}
 	
 }

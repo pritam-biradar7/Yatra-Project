@@ -12,6 +12,7 @@
 <c:forEach var="s" items="${requestScope.Cust_list}">
 ${s}<br>
 </c:forEach>
+<br><a href="/cart/showcart">Show Cart</a>
 </form>
 </body>
 </html>

@@ -7,4 +7,5 @@ import com.app.pojos.CountryPojo;
 public interface ICountryDao {
 
 	List<CountryPojo> getCountries();
+	CountryPojo getCountry(int cId);
 }

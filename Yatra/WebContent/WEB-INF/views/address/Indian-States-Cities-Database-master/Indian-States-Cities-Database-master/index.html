@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="cities.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<table><tr><td>
+<select onchange="print_city('state', this.selectedIndex);" id="state" name ="state" class="form-control" required></select></td></tr>
+<tr><td>
+<select id ="city" class="form-control" name="city" required></select>
+<script language="javascript">print_state("state");</script></td></tr>
+</table>
+</body>
+</html>

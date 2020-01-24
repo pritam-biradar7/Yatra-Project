@@ -30,4 +30,11 @@ public class CustomerDaoImpl implements ICustomerDao{
 		return sf.getCurrentSession().createQuery(jpql,CustomerPojo.class)
 				.setParameter("em", email).setParameter("pass", password).getSingleResult();
 	}
+
+	@Override
+	public String registerCustomer(CustomerPojo cust) {
+		// TODO Auto-generated method stub
+		sf.getCurrentSession().persist(cust);
+		return "Customer Added successfully with id "+cust.getCustId();
+	}
 }

@@ -24,4 +24,11 @@ public class CountryDaoImpl implements ICountryDao {
 				.getResultList();
 	}
 
+	@Override
+	public CountryPojo getCountry(int cId) {
+		String jpql="select c from CountryPojo c where c.cId=:cId";
+		return sf.getCurrentSession().createQuery(jpql,CountryPojo.class).setParameter("cId", cId)
+				.getSingleResult();
+	}
+
 }

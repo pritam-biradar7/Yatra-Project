@@ -8,4 +8,5 @@ public interface ICustomerDao {
 
 	List<CustomerPojo> getCustomers();
 	CustomerPojo authenticateCustomer(String email,String password);
+	String registerCustomer(CustomerPojo cust);
 }
